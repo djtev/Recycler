@@ -1,0 +1,5 @@
+Name: Recycler
+Version: 1.0-Snapshot
+main: uk.co.tjevans.recycler.Recycler
+description: this plugin allows users to dismantle objects that have been made by mistake
+authors: [DJTev, HeadGam3z]
