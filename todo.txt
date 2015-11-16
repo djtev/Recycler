@@ -8,3 +8,5 @@ To do:
 - setup cost and economy hook
 - code enchant system
 - code questioner
+
+materials list - https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
