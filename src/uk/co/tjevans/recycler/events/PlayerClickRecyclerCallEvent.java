@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import uk.co.tjevans.recycler.Recycler;
 import uk.co.tjevans.recycler.customevents.PlayerClickRecyclerEvent;
@@ -32,10 +33,14 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 				return;
 			}
 			Material recyclerMat = recycler.getRecyclerConfig().getRecyclerMaterial();
-			if (clickedBlock.getType() == recyclerMat) {
-				PlayerClickRecyclerEvent recyclerEvent = new PlayerClickRecyclerEvent(e.getPlayer());
-				Bukkit.getPluginManager().callEvent(recyclerEvent);
+			if (clickedBlock.getType() != recyclerMat) {
+				return;
 			}
+			ItemStack itemToRecycle = e.getPlayer().getItemInHand();
+			if (itemToRecycle == null || itemToRecycle.getType() == Material.AIR) {
+				return;
+			}
+			Bukkit.getPluginManager().callEvent(new PlayerClickRecyclerEvent(e.getPlayer(), itemToRecycle));
 		}
 	}
 
