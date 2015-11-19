@@ -22,14 +22,14 @@ public class RecyclerConfig {
 	}
 	
 	public void addDefaultValues() {
-		config.addDefault(opts + "Recycler", "CAULDRON");
+		config.addDefault(opts + "Recycler-Material", "CAULDRON");
 		config.options().copyDefaults(true);
 		recycler.saveConfig();
 	}
 	
-	public Material getRecycler() {
-		String recyclerBlock = config.getString(opts + "Recycler-Block");
-		Material recycler = Material.getMaterial(recyclerBlock);
+	public Material getRecyclerMaterial() {
+		String recyclerMat = config.getString(opts + "Recycler-Material");
+		Material recycler = Material.getMaterial(recyclerMat);
 		if (recycler == null) {
 			return Material.CAULDRON;
 		}
