@@ -31,7 +31,7 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 			if (clickedBlock == null || clickedBlock.getType() == Material.AIR) {
 				return;
 			}
-			Material recyclerMat = recycler.getRecyclerConfig().getRecycler();
+			Material recyclerMat = recycler.getRecyclerConfig().getRecyclerMaterial();
 			if (clickedBlock.getType() == recyclerMat) {
 				PlayerClickRecyclerEvent recyclerEvent = new PlayerClickRecyclerEvent(e.getPlayer());
 				Bukkit.getPluginManager().callEvent(recyclerEvent);
