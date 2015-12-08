@@ -37,8 +37,26 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 				return;
 			}
 			ItemStack itemToRecycle = e.getPlayer().getItemInHand();
+			Material type = itemToRecycle.getType();
 			if (itemToRecycle == null || itemToRecycle.getType() == Material.AIR) {
 				return;
+			}
+			else if (itemToRecycle.getType() == Material.HOPPER && itemToRecycle.getAmount() >= 1){
+				;
+				e.getPlayer().getInventory().removeItem(new ItemStack(Material.HOPPER, 1));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.IRON_INGOT, 5));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.CHEST, 1));
+				e.getPlayer().sendMessage("Item " + type + " Recycled");
+			}
+			else if (itemToRecycle.getType() == Material.ARROW && itemToRecycle.getAmount() >= 4){
+				e.getPlayer().getInventory().removeItem(new ItemStack(Material.ARROW, 4));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.FLINT, 1));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.STICK, 1));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.FEATHER, 1));
+				e.getPlayer().sendMessage("Item " + type + " Recycled");
+			}
+			else {
+				e.getPlayer().sendMessage("You don't have enough of " + type + " to recycle");
 			}
 			Bukkit.getPluginManager().callEvent(new PlayerClickRecyclerEvent(e.getPlayer(), itemToRecycle));
 		}
