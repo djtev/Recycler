@@ -42,7 +42,6 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 				return;
 			}
 			else if (itemToRecycle.getType() == Material.HOPPER && itemToRecycle.getAmount() >= 1){
-				;
 				e.getPlayer().getInventory().removeItem(new ItemStack(Material.HOPPER, 1));
 				e.getPlayer().getInventory().addItem(new ItemStack(Material.IRON_INGOT, 5));
 				e.getPlayer().getInventory().addItem(new ItemStack(Material.CHEST, 1));
@@ -55,7 +54,16 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 				e.getPlayer().getInventory().addItem(new ItemStack(Material.FEATHER, 1));
 				e.getPlayer().sendMessage("Item " + type + " Recycled");
 			}
-			else {
+			else if (itemToRecycle.getType() == Material.BOW && itemToRecycle.getAmount() >= 1){
+				e.getPlayer().getInventory().removeItem(new ItemStack(Material.BOW, 1));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.STRING, 3));
+				e.getPlayer().getInventory().addItem(new ItemStack(Material.STICK, 3));
+				e.getPlayer().sendMessage("Item " + type + " Recycled");
+			}
+			else if ((itemToRecycle.getType() == Material.FLINT) || (itemToRecycle.getType() == Material.RECORD_3) || (itemToRecycle.getType() == Material.RECORD_10) || (itemToRecycle.getType() == Material.RECORD_11) || (itemToRecycle.getType() == Material.RECORD_12) || (itemToRecycle.getType() == Material.RECORD_4) || (itemToRecycle.getType() == Material.RECORD_5) || (itemToRecycle.getType() == Material.RECORD_6) || (itemToRecycle.getType() == Material.RECORD_7) || (itemToRecycle.getType() == Material.RECORD_8) || (itemToRecycle.getType() == Material.RECORD_9) || (itemToRecycle.getType() == Material.FEATHER) || (itemToRecycle.getType() == Material.RED_ROSE) || (itemToRecycle.getType() == Material.APPLE) || (itemToRecycle.getType() == Material.DIAMOND)){
+				e.getPlayer().sendMessage(type + "is not recyclable");
+			}
+				else {
 				e.getPlayer().sendMessage("You don't have enough of " + type + " to recycle");
 			}
 			Bukkit.getPluginManager().callEvent(new PlayerClickRecyclerEvent(e.getPlayer(), itemToRecycle));
