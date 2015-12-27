@@ -38,6 +38,7 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 			}
 			ItemStack itemToRecycle = e.getPlayer().getItemInHand();
 			Material type = itemToRecycle.getType();
+			int d = itemToRecycle.getType().getMaxDurability();
 			if (itemToRecycle == null || itemToRecycle.getType() == Material.AIR) {
 				return;
 			}
@@ -59,7 +60,7 @@ public class PlayerClickRecyclerCallEvent implements Listener {
 				e.getPlayer().sendMessage("Item " + type + " Recycled");
 			}
 			else if (itemToRecycle.getType() == Material.BOW && itemToRecycle.getAmount() >= 1){
-				if (e.getPlayer().getItemInHand().getDurability()<=300){
+				if (e.getPlayer().getItemInHand().getDurability()<d){
 					e.getPlayer().sendMessage("Item " + type + " Is too damaged. Sorry but it is not Recyclable");
 					}
 				else {
